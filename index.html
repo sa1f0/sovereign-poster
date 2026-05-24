@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign Vision-Based Navigation Poster</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* slate-900 */
+            color: #f8fafc; /* slate-50 */
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        @page {
+            size: A1 portrait;
+            margin: 0;
+        }
+        @media print {
+            body {
+                background-color: white;
+                color: black;
+            }
+            .print-bg-dark { background-color: #0f172a !important; color: white !important; }
+            .print-text-blue { color: #3b82f6 !important; }
+            .print-border-blue { border-color: #3b82f6 !important; }
+            .shadow-2xl { box-shadow: none !important; }
+        }
+        
+        /* Fallback styling for images in case local loading fails in preview */
+        img {
+            background-color: #1e293b;
+            min-height: 200px;
+            object-fit: cover;
+        }
+
+        /* Custom timeline styles for the pipeline */
+        .timeline-line {
+            position: absolute;
+            left: 23px;
+            top: 40px;
+            bottom: -20px;
+            width: 4px;
+            background: linear-gradient(to bottom, #06b6d4, #3b82f6);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-12 flex justify-center bg-slate-800">
+
+    <!-- Poster Container -->
+    <div class="print-bg-dark bg-slate-900 w-full max-w-[1200px] p-10 md:p-16 rounded-2xl shadow-2xl relative overflow-hidden border border-slate-700">
+        
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-[-10%] right-[-5%] w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] left-[-5%] w-96 h-96 bg-cyan-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 pointer-events-none"></div>
+
+        <!-- Header -->
+        <header class="border-b-4 border-blue-500 print-border-blue pb-8 mb-10 text-center md:text-left relative z-10">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 tracking-tight uppercase leading-tight">
+                Sovereign Vision-Based Navigation
+            </h1>
+            <h2 class="text-2xl md:text-3xl font-light text-slate-300 mt-4 tracking-wide">
+                Autonomous X500 Geolocalization in GNSS-Denied Environments
+            </h2>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
+            
+            <!-- LEFT COLUMN -->
+            <div class="space-y-12">
+                
+                <!-- Section 1: The Platform -->
+                <section>
+                    <h3 class="text-3xl font-bold border-l-8 border-blue-500 print-border-blue pl-4 mb-6 text-white uppercase tracking-wider">
+                        1. The Platform: X500 Edge-Compute
+                    </h3>
+                    
+                    <!-- Main Drone Image (img2.png) -->
+                    <img src="img2.png" 
+                         alt="X500 Platform" 
+                         class="w-full h-auto rounded-xl border-2 border-slate-700 shadow-lg mb-6"
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x500/1e293b/94a3b8?text=img2.png+(Drone+Image)';">
+                    
+                    <ul class="space-y-3 text-slate-300 text-lg leading-relaxed">
+                        <li><strong class="text-blue-400">Drone Frame:</strong> Holybro X500 V2 Quadcopter</li>
+                        <li><strong class="text-blue-400">Flight Controller:</strong> Pixhawk 6X running PX4 Autopilot</li>
+                        <li><strong class="text-blue-400">Companion Computer:</strong> Raspberry Pi 5 (Edge computer)</li>
+                        <li><strong class="text-blue-400">Vision Sensor:</strong> Raspberry Pi Camera Module 3 (Sony IMX708)</li>
+                        <li><strong class="text-blue-400">Heading/Failsafe:</strong> Here3 GNSS (DroneCAN protocol)</li>
+                        <li><strong class="text-blue-400">Altitude Data:</strong> Barometer feedback for altitude</li>
+                    </ul>
+                </section>
+
+                <!-- Section 2: Expanded System Integration -->
+                <section>
+                    <h3 class="text-3xl font-bold border-l-8 border-cyan-500 print-border-blue pl-4 mb-6 text-white uppercase tracking-wider">
+                        2. System Integration Architecture
+                    </h3>
+                    
+                    <div class="relative space-y-8 mt-6">
+                        <!-- Timeline Line -->
+                        <div class="timeline-line hidden md:block"></div>
+
+                        <!-- Step 1 -->
+                        <div class="relative z-10 flex flex-col md:flex-row gap-4 items-start">
+                            <div class="flex-shrink-0 bg-slate-900 border-4 border-cyan-400 w-12 h-12 rounded-full flex items-center justify-center font-bold text-cyan-400 z-10 shadow-[0_0_15px_rgba(34,211,238,0.5)]">
+                                1
+                            </div>
+                            <div class="bg-slate-800 p-5 rounded-lg border border-slate-700 shadow-lg flex-grow">
+                                <h4 class="text-xl font-bold text-white mb-2">Edge Sensor Capture</h4>
+                                <p class="text-slate-300 text-base leading-relaxed">
+                                    The <strong class="text-cyan-400">Pi Camera 3</strong> feeds raw video through the MIPI/CSI interface. To bypass native Ubuntu 22.04 limitations, custom <code class="bg-slate-900 px-1 py-0.5 rounded text-sm text-pink-400 font-mono">libcamera</code> drivers are invoked, granting direct, low-latency access to the Pi 5's Image Signal Processor (ISP).
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="relative z-10 flex flex-col md:flex-row gap-4 items-start">
+                            <div class="flex-shrink-0 bg-slate-900 border-4 border-blue-400 w-12 h-12 rounded-full flex items-center justify-center font-bold text-blue-400 z-10 shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+                                2
+                            </div>
+                            <div class="bg-slate-800 p-5 rounded-lg border border-slate-700 shadow-lg flex-grow">
+                                <h4 class="text-xl font-bold text-white mb-2">ROS 2 Processing Hub</h4>
+                                <p class="text-slate-300 text-base leading-relaxed">
+                                    The Pi 5 processes visual data inside a <strong class="text-blue-400">ROS 2 Humble</strong> environment. The <code class="bg-slate-900 px-1 py-0.5 rounded text-sm text-pink-400 font-mono">cv_bridge</code> package translates ROS image topics into OpenCV matrices, feeding the dual-stage AI geolocalization algorithms running entirely on the edge CPU.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="relative z-10 flex flex-col md:flex-row gap-4 items-start">
+                            <div class="flex-shrink-0 bg-slate-900 border-4 border-cyan-400 w-12 h-12 rounded-full flex items-center justify-center font-bold text-cyan-400 z-10 shadow-[0_0_15px_rgba(34,211,238,0.5)]">
+                                3
+                            </div>
+                            <div class="bg-slate-800 p-5 rounded-lg border border-slate-700 shadow-lg flex-grow">
+                                <h4 class="text-xl font-bold text-white mb-2">High-Speed UART Bridge</h4>
+                                <p class="text-slate-300 text-base leading-relaxed">
+                                    Standard 57600 baud rates caused packet drops ("ghosting nodes"). The system utilizes an upgraded <strong class="text-cyan-400">921600 baud rate</strong> over <code class="bg-slate-900 px-1 py-0.5 rounded text-sm text-pink-400 font-mono">/dev/ttyACM0</code> to ensure uninterrupted, high-frequency MAVLink data transfer between the Pi 5 and the flight controller.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="relative z-10 flex flex-col md:flex-row gap-4 items-start">
+                            <div class="flex-shrink-0 bg-slate-900 border-4 border-blue-400 w-12 h-12 rounded-full flex items-center justify-center font-bold text-blue-400 z-10 shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+                                4
+                            </div>
+                            <div class="bg-slate-800 p-5 rounded-lg border border-slate-700 shadow-lg flex-grow">
+                                <h4 class="text-xl font-bold text-white mb-2">Flight Control & EKF2 Fusion</h4>
+                                <p class="text-slate-300 text-base leading-relaxed">
+                                    MAVROS translates the metric AI offsets and injects them directly into the <code class="bg-slate-900 px-1 py-0.5 rounded text-sm text-pink-400 font-mono">/mavros/vision_pose/pose</code> topic. The <strong class="text-blue-400">Pixhawk 6X (PX4)</strong> processes this via its EKF2 engine, issuing precise autonomous motor commands while strictly ignoring jammed GPS.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div class="space-y-12">
+                
+                <!-- Section 3: AI Pipeline -->
+                <section>
+                    <h3 class="text-3xl font-bold border-l-8 border-blue-500 print-border-blue pl-4 mb-6 text-white uppercase tracking-wider">
+                        3. AI Geolocalization Pipeline
+                    </h3>
+
+                    <!-- Map/AI Image (img1.png) -->
+                    <figure class="mb-6">
+                        <img src="img1.png" 
+                             alt="SIFT Pixel Offset on Sample Frame" 
+                             class="w-full h-auto rounded-xl border-2 border-slate-700 shadow-lg"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x350/1e293b/94a3b8?text=img1.png+(SIFT+Pixel+Offsets)';">
+                        <figcaption class="text-center text-slate-400 text-sm mt-2 font-semibold tracking-wide">SIFT Feature Matching and Pixel Offset Calculation on Live Frame</figcaption>
+                    </figure>
+
+                    <div class="space-y-5 text-slate-300 text-lg leading-relaxed">
+                        <div class="bg-slate-800 p-4 rounded-lg border border-slate-700 shadow-inner">
+                            <h4 class="text-xl font-bold text-white mb-2">Phase I: Semantic Global Retrieval</h4>
+                            <p>A quantized <strong class="text-blue-400">ResNet-50</strong> model extracts 512-dimensional embeddings from the live drone feed, comparing them against an indexed FAISS satellite database to find the closest semantic neighborhood map tile.</p>
+                        </div>
+
+                        <div class="bg-slate-800 p-4 rounded-lg border border-slate-700 shadow-inner">
+                            <h4 class="text-xl font-bold text-white mb-2">Phase II: Geometric Registration</h4>
+                            <p>The <strong class="text-blue-400">SIFT</strong> algorithm extracts distinct geometric keypoints (visualized above). <strong class="text-blue-400">RANSAC</strong> aggressively filters out mismatched or distorted points to ensure only high-confidence visual anchors are used to map the drone's location onto the tile.</p>
+                        </div>
+
+                        <div class="bg-slate-800 p-4 rounded-lg border border-slate-700 shadow-inner">
+                            <h4 class="text-xl font-bold text-white mb-2">Phase III: Dynamic Metric Translation</h4>
+                            <p>The system calculates <strong class="text-blue-400">Ground Sample Distance (GSD)</strong> using real-time altitude and camera FOV. Pixel offsets from Phase II are multiplied by the GSD to yield real-world metric X/Y corrections.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4: Real World Validation -->
+                <section>
+                    <h3 class="text-3xl font-bold border-l-8 border-cyan-500 print-border-blue pl-4 mb-6 text-white uppercase tracking-wider">
+                        4. Real-World Validation
+                    </h3>
+                    
+                    <!-- Results Image (img3.png) -->
+                    <figure class="mb-6">
+                        <img src="img3.png" 
+                             alt="Accuracy Verification" 
+                             class="w-full h-auto object-cover rounded-xl border-2 border-slate-700 shadow-lg"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x400/1e293b/94a3b8?text=img3.png+(Accuracy+Verification)';">
+                        <figcaption class="text-center text-slate-400 text-sm mt-2 font-semibold tracking-wide">Accuracy Verification: Drone view Vs satelite view AI model picks</figcaption>
+                    </figure>
+
+                    <ul class="space-y-3 text-slate-300 text-lg leading-relaxed">
+                        <li><strong class="text-cyan-400">Topographic Context (Amman):</strong> System successfully navigates aggressive elevation changes (Wadis, Jabals) and overcomes homogeneous limestone architecture ("texture traps").</li>
+                        <li><strong class="text-cyan-400">Sovereign Operation:</strong> Provides complete resilience against regional GNSS jamming/spoofing threats by operating 100% locally on the Pi 5.</li>
+                        <li><strong class="text-cyan-400">Proven Edge Performance:</strong> The optimized ONNX model successfully achieves a <strong class="text-white">62.5% Top-1 Retrieval Accuracy</strong> while restricted solely to the computational limits of the edge CPU.</li>
+                    </ul>
+                </section>
+
+            </div>
+        </div>
+        
+        <!-- Footer / Affiliation -->
+        <footer class="mt-12 border-t-2 border-slate-800 pt-6 text-center text-slate-500 relative z-10 flex justify-between items-center px-4">
+            <p class="uppercase tracking-widest text-sm font-semibold">HTU Drones Lab</p>
+            <p class="uppercase tracking-widest text-sm font-semibold">Al-Hussein Technical University • Amman, Jordan</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
